@@ -11,6 +11,9 @@ const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
 
+
+//AXxN9PlEwRg2K5Jf
+//mongodb+srv://gokilapriyas21it:AXxN9PlEwRg2K5Jf@blog-app.hrzq2.mongodb.net/?retryWrites=true&w=majority&appName=blog-app
 const salt = bcrypt.genSaltSync(10);
 const secret = 'asdfe45we45w345wegw345werjktjwertkj';
 
@@ -19,7 +22,19 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-mongoose.connect('mongodb+srv://blog:RD8paskYC8Ayj09u@cluster0.pflplid.mongodb.net/?retryWrites=true&w=majority');
+
+
+mongoose.connect('mongodb+srv://gokilapriyas21it:AXxN9PlEwRg2K5Jf@blog-app.hrzq2.mongodb.net/?retryWrites=true&w=majority&appName=blog-app', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  ssl: true // Ensure SSL is enabled
+}).then(() => {
+  console.log('Connected to MongoDB successfully!');
+}).catch((err) => {
+  console.error('Failed to connect to MongoDB:', err);
+});
+
+//mongoose.connect('mongodb+srv://gokilapriyas21it:AXxN9PlEwRg2K5Jf@blog-app.hrzq2.mongodb.net/?retryWrites=true&w=majority&appName=blog-app');
 
 app.post('/register', async (req,res) => {
   const {username,password} = req.body;
